@@ -1,9 +1,33 @@
-<div class="my-canvas">
+<style>
+  .my-canvas {
+    border: 5px solid black;
+  }
+
+  .view-main .card-space {
+    border: 3px solid gray;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+  }
+
+</style>
+
+
+<div class="my-canvas" ng-controller="View1Ctrl as vm">
 
   <header> header </header>
 
-  <div id="view-main">
-    <article> the main body </article>
+  <div class="view-main">
+
+    <article>
+      <div class="card-space">
+        <basic-card model="vm.card1"></basic-card>
+        <basic-card model="vm.card2"></basic-card>
+      </div>
+    </article>
+
     <nav> lhs navigator </nav>
     <aside> rhs navigator</aside>
   </div>

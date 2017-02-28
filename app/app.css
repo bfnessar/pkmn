@@ -1,32 +1,35 @@
 /* app css stylesheet */
 
-/* Flexbox examples: http://learnlayout.com/flexbox.html */
 
-.my-canvas {
-  border: 5px solid black;
-}
 
 /*
   Flexbox setup, taken from
   https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes#Holy_Grail_Layout_example
+
+  For flexbox practice, see:
+    https://demo.agektmr.com/flexbox/
+    http://the-echoplex.net/flexyboxes/
+    http://codepen.io/justd/pen/yydezN
+    ******* http://flexboxfroggy.com/ ******** v interesting
+    http://learnlayout.com/flexbox.html
 */
-#view-main {
+.view-main {
   min-height: 80vh;
   margin: 0px;
   padding: 0px;
   display: flex;
   flex-flow: row;
 }
-#view-main > article {
+.view-main > article {
   margin: .25em;
   padding: .25em;
-  border: 1px solid blue;
+  border: 3px solid blue;
   border-radius: 7pt;
   background: #dddd88;
   flex: 3 1 60%;
   order: 2;
 }
-#view-main > nav {
+.view-main > nav {
   margin: .25em;
   padding: .25em;
   border: 1px solid #8888bb;
@@ -35,7 +38,7 @@
   flex: 1 6 20%;
   order: 1;
 }
-#view-main > aside {
+.view-main > aside {
   margin: .25em;
   padding: .25em;
   border: 1px solid #8888bb;
@@ -56,14 +59,14 @@ header, footer {
 
 /* if too narrow to support three columns */
 @media all and (max-width: 640px) {
-  #view-main, #page {
+  .view-main, #page {
     flex-direction: column;
   }
-  #view-main > article, #view-main > nav, #view-main > aside {
+  .view-main > article, .view-main > nav, .view-main > aside {
     /* return them to document order */
     order: 0;
   }
-  #view-main > nav, #view-main > aside, header, footer {
+  .view-main > nav, .view-main > aside, header, footer {
     min-height: 50px;
     max-height: 50px;
   }

@@ -9,6 +9,10 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
-
+.controller('View1Ctrl', [
+  '$scope', 'basicCardService',
+  function($scope, basicCardService) {
+    var vm = this;
+    vm.card1 = angular.copy(basicCardService);
+    vm.card2 = angular.copy(basicCardService);
 }]);
