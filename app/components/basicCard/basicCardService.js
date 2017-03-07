@@ -9,7 +9,7 @@
 
     function basicCardService($http) {
       var BasicCardService = {
-        'testString': 'basiccardserviceteststring',
+        'teststring': 'basiccardserviceteststring'
 
 
       }

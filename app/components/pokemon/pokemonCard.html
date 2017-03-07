@@ -1,0 +1,91 @@
+<style>
+  .pokemon-data {
+    border: 3px solid blue;
+    /*margin: auto;*/
+    background-color: gold;
+    padding: .5em;
+
+    display: flex;
+    flex-direction: column;
+    width: 24em;
+    height: 12em;
+  }
+
+  .pokemon-data .row {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    margin-left: 10em;
+    height: 2em;
+
+  }
+
+  .pokemon-data .stats-box {
+    /*border: 1px solid black;*/
+    height: 4em;
+  }
+
+  .pokemon-card .pokemon-sprite {
+
+  }
+
+
+</style>
+
+
+
+<button ng-click="model.queryPokemonName('bulbasaur')">Q("bulbasaur")</button>
+
+<img class="pokemon-sprite" ng-src="{{model.getSpriteSrc(model.pokemon_obj_raw)}}"></img>
+
+
+<div class="pokemon-card">
+
+
+  <div class="pokemon-data">
+    <div class="row">
+      <p> {{model.pokemon_obj.dexnum}} </p>
+      <p> {{model.pokemon_obj.name}} </p>
+      <p ng-repeat="type in model.pokemon_obj.types"> {{type.name}} </p>
+    </div>
+
+    <div class="row">
+      <p ng-repeat="ability in model.pokemon_obj.abilities"> {{ability.name}} </p>
+    </div>
+
+    <table class="row stats-box">
+      <tr>
+        <th>HP</th>
+        <th>Atk</th>
+        <th>Def</th>
+        <th>SpA</th>
+        <th>SpD</th>
+        <th>Spe</th>
+      </tr>
+      <tr>
+        <td>{{model.pokemon_obj.stats['hp']}}</td>
+        <td>{{model.pokemon_obj.stats['attack']}}</td>
+        <td>{{model.pokemon_obj.stats['defense']}}</td>
+        <td>{{model.pokemon_obj.stats['special-attack']}}</td>
+        <td>{{model.pokemon_obj.stats['special-defense']}}</td>
+        <td>{{model.pokemon_obj.stats['speed']}}</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+
+<!--
+  <img ng-src="{{model.getSpriteSrc(model.pokemon_obj_raw)}}"></img>
+
+  <h2>pokemon card</h2>
+  <ul>
+    <li>make API calls with the service</li>
+  </ul>
+  <p> test test {{model.teststring}} test test </p>
+  <button ng-click="model.queryPokemonName('bulbasaur')">show bulba</button>
+  <button ng-click="model.queryPokemonList(150, 0);">build list</button>
+ -->
+
+</div>

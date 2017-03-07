@@ -10,9 +10,12 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', [
-  '$scope', 'basicCardService',
-  function($scope, basicCardService) {
+  '$scope', 'basicCardService', 'pokemonCardService', 'pokeapiFactory',
+  function($scope, basicCardService, pokemonCardService, pokeapiFactory) {
     var vm = this;
     vm.card1 = angular.copy(basicCardService);
-    vm.card2 = angular.copy(basicCardService);
+    vm.pokemoncard1 = angular.copy(pokemonCardService);
+
+
+
 }]);

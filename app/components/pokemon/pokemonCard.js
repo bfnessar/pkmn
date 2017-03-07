@@ -3,13 +3,13 @@
 
     angular
         .module('myApp')
-        .directive('basicCard', basicCard);
+        .directive('pokemonCard', pokemonCard);
 
     /* @ngInject */
-    function basicCard() {
+    function pokemonCard() {
         var directive = {
             restrict: 'EA',
-            templateUrl: '/components/basicCard/basicCard.html',
+            templateUrl: '/components/pokemon/pokemonCard.html',
             scope: {
               model: '=',
             },
