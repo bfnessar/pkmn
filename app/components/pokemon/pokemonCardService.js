@@ -38,10 +38,15 @@
             for (var i=0; i<raw.types.length; i++) {
               clean['types'].push( angular.copy( raw.types[i].type ) );
             };
-            clean['stats'] = {};
+            clean['stats_obj'] = {};
+            clean['stats_list'] = [];
             for (var i=0; i<raw.stats.length; i++) {
-              clean['stats'][raw.stats[i].stat.name] = raw.stats[i].base_stat;
-            }
+              clean['stats_obj'][raw.stats[i].stat.name] = raw.stats[i].base_stat;
+              var stat = {};
+              stat.name = raw.stats[i].stat.name;
+              stat.base_value = raw.stats[i].base_stat;
+              clean['stats_list'].push(angular.copy(stat));
+            };
             clean['moves'] = [];
             for (var i=0; i<raw.moves.length; i++) {
               clean['moves'].push( angular.copy( raw.moves[i].move ) )
@@ -72,6 +77,7 @@
             return "assets/pokemon-sprites/substitute-doll.png"
           }
         },
+
 
 
       }

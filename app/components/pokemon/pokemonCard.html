@@ -1,59 +1,157 @@
 <style>
-  .pokemon-data {
-    border: 3px solid blue;
-    /*margin: auto;*/
-    background-color: gold;
-    padding: .5em;
 
-    display: flex;
-    flex-direction: column;
-    width: 24em;
-    height: 12em;
+  .pkmn-card md-card-header {
+    padding: 5px;
+    background-color: green;
+    border: 2px solid black;
   }
 
-  .pokemon-data .row {
-    border: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    margin-left: 10em;
-    height: 2em;
-
+  .pkmn-name {
+    font-size: 1.2em;
   }
 
-  .pokemon-data .stats-box {
-    /*border: 1px solid black;*/
-    height: 4em;
+  .primary-row > span {
+    margin: 0px 5px 0px 5px;
   }
-
-  .pokemon-card .pokemon-sprite {
-
+  .type-icon {
+    width: 1em;
+    height: 1em;
+  }
+  .pkmn-abilities {
+    margin-left: 10px;
+  }
+  .pkmn-ability {
+    margin: 0px 5px 0px 5px;
+    font-size: 0.75em;
+  }
+  .pkmn-stats {
+    padding: 0px 0px 0px 0px;
+    background-color: gray;
+    border: 2px solid black;
+  }
+  .pkmn-content {
+    max-height: 6em;
+    overflow: scroll;
   }
 
 
 </style>
 
+<md-card class="pkmn-card">
 
+  <div>
+    <md-card-header>
+
+      <md-card-avatar>
+        <img class="md-user-avatar" ng-src="{{model.getSpriteSrc(model.pokemon_obj_raw)}}">
+      </md-card-avatar>
+
+      <md-card-header-text>
+        <div class="primary-row" layout="row" layout-align="space-between center">
+          <span class="pkmn-name">{{model.pokemon_obj.dexnum}}. {{model.pokemon_obj.name}}</span>
+          <span layout="row">
+            <img class="type-icon" ng-repeat="type in model.pokemon_obj.types" ng-src="assets/pokemon-type-icons/{{type.name}}.png"></img>
+          </span>
+        </div>
+        <span class="pkmn-abilities md-subhead">
+          <span class="pkmn-ability" ng-repeat="ability in model.pokemon_obj.abilities"> {{ability.name}} </span>
+        </span>
+      </md-card-header-text>
+
+    </md-card-header>
+  </div>
+
+  <md-card-title class="pkmn-stats" layout="row" layout-align="space-around center" >
+        <span>
+          <table>
+            <tr>
+              <th>HP</th>
+              <th>Atk</th>
+              <th>Def</th>
+              <th>SpA</th>
+              <th>SpD</th>
+              <th>Spe</th>
+            </tr>
+            <tr>
+              <td>{{model.pokemon_obj.stats_obj['hp']}}</td>
+              <td>{{model.pokemon_obj.stats_obj['attack']}}</td>
+              <td>{{model.pokemon_obj.stats_obj['defense']}}</td>
+              <td>{{model.pokemon_obj.stats_obj['special-attack']}}</td>
+              <td>{{model.pokemon_obj.stats_obj['special-defense']}}</td>
+              <td>{{model.pokemon_obj.stats_obj['speed']}}</td>
+            </tr>
+          </table>
+        </span>
+  </md-card-title>
+
+  <md-card-actions layout="row" layout-align="start center">
+    <md-card-icon-actions>
+      <md-icon class="material-icons" alt="moves" aria-label="moves">gavel</md-icon>
+      <md-icon class="material-icons" alt="sets" aria-label="sets">list</md-icon>
+      <md-icon class="material-icons" alt="dex" aria-label="dex">description</md-icon>
+      <md-icon class="material-icons" alt="gallery" aria-label="gallery">perm_media</md-icon>
+      <md-icon class="material-icons" alt="show" aria-label="show">visibility</md-icon>
+    </md-card-icon-actions>
+  </md-card-actions>
+
+
+  <md-card-content class="pkmn-content">
+    <div class="moves-list">
+      <h5>MOVES</h5>
+      <ul>
+        <li ng-repeat="move in model.pokemon_obj.moves">{{move.name}}</li>
+      </ul>
+    </div>
+  </md-card-content>
+</md-card>
 
 <button ng-click="model.queryPokemonName('bulbasaur')">Q("bulbasaur")</button>
 
-<img class="pokemon-sprite" ng-src="{{model.getSpriteSrc(model.pokemon_obj_raw)}}"></img>
+
+<!--
+<style>
+  .pkmn-card * {
+    border: 1px solid blue;
+  }
+
+  .pkmn-card {
+    width: 30vw;
+  }
+
+  .pokemon-sprite {
+    /*width: auto;
+    height: auto;*/
+  }
+
+  .type-icon {
+    height: 2em;
+    width: 2em;
+  }
 
 
-<div class="pokemon-card">
+</style>
 
+<button ng-click="model.queryPokemonName('bulbasaur')">Q("bulbasaur")</button>
 
-  <div class="pokemon-data">
-    <div class="row">
+<div flex class="pkmn-card" layout="row">
+
+  <div flex class="profile-column">
+    <img class="pokemon-sprite" ng-src="{{model.getSpriteSrc(model.pokemon_obj_raw)}}"></img>
+  </div>
+
+  <div flex class="pokemon-data-column" layout="column">
+
+    <div class="pokemon-identifying-data" layout="row">
       <p> {{model.pokemon_obj.dexnum}} </p>
       <p> {{model.pokemon_obj.name}} </p>
-      <p ng-repeat="type in model.pokemon_obj.types"> {{type.name}} </p>
+      <img class="type-icon" ng-repeat="type in model.pokemon_obj.types" ng-src="assets/pokemon-type-icons/{{type.name}}.png"></img>
     </div>
 
-    <div class="row">
+    <div flex layout="row" class="pokemon-abilities">
       <p ng-repeat="ability in model.pokemon_obj.abilities"> {{ability.name}} </p>
     </div>
 
-    <table class="row stats-box">
+    <table class="pokemon-stats">
       <tr>
         <th>HP</th>
         <th>Atk</th>
@@ -71,21 +169,14 @@
         <td>{{model.pokemon_obj.stats['speed']}}</td>
       </tr>
     </table>
+
+
   </div>
+</div>
 
 
 
 
-<!--
-  <img ng-src="{{model.getSpriteSrc(model.pokemon_obj_raw)}}"></img>
-
-  <h2>pokemon card</h2>
-  <ul>
-    <li>make API calls with the service</li>
-  </ul>
-  <p> test test {{model.teststring}} test test </p>
-  <button ng-click="model.queryPokemonName('bulbasaur')">show bulba</button>
-  <button ng-click="model.queryPokemonList(150, 0);">build list</button>
- -->
 
 </div>
+ -->
